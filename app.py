@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 # 设置上传文件的保存目录
-app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['UPLOAD_FOLDER'] = 'static'
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
 
 def allowed_file(filename):
@@ -29,14 +29,14 @@ def upload_file():
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # return jsonify({'message': 'File successfully uploaded'})
-        pdf_path = 'uploads/pdf'
+        pdf_path = 'static/' + filename
         return render_template('viewer.html', pdf_path=pdf_path)
     else:
         return jsonify({'error': 'Invalid file format'})
 
-@app.route('/pdf_viewer')
-def pdf_viewer():
-    pdf_path = 'pdf'
+@app.route('/pdf_viewer/<path>')
+def pdf_viewer(path):
+    pdf_path = 'static/' + path + '.pdf'
     return render_template('viewer.html', pdf_path=pdf_path)
 
 if __name__ == '__main__':

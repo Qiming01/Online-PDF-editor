@@ -29,7 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.189/pdf.min.mjs" type="module"></script>
 
     <script type="module">
-        var url = '../uploads/pdf';
+        var url = '{{pdf_path}}';
         var { pdfjsLib } = globalThis;
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.189/pdf.worker.mjs';
         var pdfDoc = null,
