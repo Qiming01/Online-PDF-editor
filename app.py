@@ -28,9 +28,16 @@ def upload_file():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return jsonify({'message': 'File successfully uploaded'})
+        # return jsonify({'message': 'File successfully uploaded'})
+        pdf_path = 'uploads/pdf'
+        return render_template('viewer.html', pdf_path=pdf_path)
     else:
         return jsonify({'error': 'Invalid file format'})
+
+@app.route('/pdf_viewer')
+def pdf_viewer():
+    pdf_path = 'pdf'
+    return render_template('viewer.html', pdf_path=pdf_path)
 
 if __name__ == '__main__':
     app.run(debug=True)
