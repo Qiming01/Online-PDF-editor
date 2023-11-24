@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Viewer</title>
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+  </head>
+  <body>
+
+    <div id="pspdfkit" style="width: 70%; height: 100vh;"></div>
+
+    <script src="{{ url_for('static', filename='pspdfkit.js') }}"></script>
+
+    <script>
+      var url = '{{pdf_path}}';
+      PSPDFKit.load({
+        container: "#pspdfkit",
+        // document: "{{ url_for('static', filename=url) }}",
+        // document: "../static/" + url,
+        document: url,
+      })
+        .then(function(instance) {
+          console.log("PSPDFKit loaded", instance);
+        })
+        .catch(function(error) {
+          console.error(error.message);
+        });
+    </script>
+  </body>
+</html>
