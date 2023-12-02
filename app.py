@@ -13,7 +13,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    return render_template('index_drag_drop.html')
+    return render_template('index_compress.html')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -34,9 +34,14 @@ def upload_file():
     else:
         return jsonify({'error': 'Invalid file format'})
 
-# @app.route('/pdf_viewer/<file_name>')
-# def pdf_viewer(file_name):
-#     return render_template('modern-viewer.html',pdf_path="static/upload/" + file_name)
+@app.route('/<file_name>')
+def pdf_viewer(file_name):
+    return render_template('modern-viewer.html',pdf_path="static/upload/" + file_name)
+    # return render_template('modern-viewer.html')
+
+# @app.route('/viewer')
+# def pdf_viewer():
+#     return render_template('modern-viewer.html',pdf_path="static/upload/document.pdf")
 #     # return render_template('modern-viewer.html')
 
 if __name__ == '__main__':
