@@ -21,23 +21,27 @@
          <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
                <li class="nav__item">
-                  <a href="#" class="nav__link">Home</a>
+                  <a href="{{ url_for('index') }}" class="nav__link">Home</a>
                </li>
 
                <li class="nav__item">
-                  <a href="#" class="nav__link">功能1</a>
+                  <a href="{{ url_for('op_compress') }}" class="nav__link">压缩</a>
                </li>
 
                <li class="nav__item">
-                  <a href="#" class="nav__link">功能2</a>
+                  <a href="{{ url_for('op_split') }}" class="nav__link">分割</a>
                </li>
 
                <li class="nav__item">
-                  <a href="#" class="nav__link">功能3</a>
+                  <a href="{{ url_for('op_sy') }}" class="nav__link">添加水印</a>
                </li>
 
                <li class="nav__item">
-                  <a href="#" class="nav__link">功能4</a>
+                  <a href="{{ url_for('op_merge') }}" class="nav__link">合并</a>
+               </li>
+
+               <li class="nav__item">
+                  <a href="{{ url_for('op_encrypt') }}" class="nav__link">加密</a>
                </li>
             </ul>
 
