@@ -7,7 +7,7 @@ def encryptPDF(sor, password):
 
     file_writer.encrypt(password) # 设置密码
     n = sor.split('/')
-    obj = 'static/download/encrypt_' + n[2]
+    obj = 'static/download/' + n[2]
     with open(obj, 'wb') as out:
         file_writer.write(out)
     return obj

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>压缩</title>
+  <title>合并</title>
   <!--=============== CSS ===============-->
   <link rel="stylesheet" href="static/css/styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -175,33 +175,22 @@
     <div class="viewBox" id="pspdfkit" style="width: 75%; height: 96vh;"></div>
     <div class="side-bar">
       <div class="side-bar-inner">
-        <img alt="Smallpdf share feature, easy to share files after PDF compression."
-          src="https://s.smallpdf.com/static/cms/f/102628/x/3153718e1e/220902_howtopdfie.svg" loading="lazy" width="600"
-          height="520" class="sc-1w0ts1v-0 kdKtXD">
-        <h2 class="sc-1oo6ywp-3 cGcXHD">如何在线免费压缩 PDF：</h2>
+        <img alt="" src="https://s.smallpdf.com/static/cms/f/102628/300x180/6c4790add5/c6837c9995f83effac8b.svg"
+          loading="lazy" width="300" height="180" class="sc-11y27q7-0 kbMMMV">
+        <h2 class="sc-1oo6ywp-3 cGcXHD">如何在线合并 PDF：</h2>
         <ol class="sc-1oo6ywp-4 fyBPkU">
-          <li class="sc-1oo6ywp-5 ca-DgPV">1. 选择你想要的压缩级别</li>
+          <li class="sc-1oo6ywp-5 ca-DgPV">1. 依次文件上传到这个页面后点击合并按钮</li>
           <li class="sc-1oo6ywp-5 ca-DgPV">2. 点击“下载”以保存压缩好的 PDF 文件</li>
           <li class="sc-1oo6ywp-5 ca-DgPV">3. 如果需要，可以继续使用我们的其他工具编辑 PDF 文件</li>
         </ol>
-        <div class="col-md-5 choose-level">
-          <label for="level" class="form-label level-lable">PDF压缩级别</label>
-          <select class="form-select" id="level" required="">
-            <!-- <option value="1">无损压缩</option>
-            <option value="2">质量高</option>
-            <option value="3">质量中</option> -->
-            <option value="4">质量低</option>
-          </select>
-          <div class="invalid-feedback">
-            请选择你想要的压缩级别.
-          </div>
-        </div>
         <div class="download-area">
           <a href="static/download/{{ obj }}" download="{{ obj }}" class="button">下载</a>
         </div>
-
       </div>
+
+
     </div>
+  </div>
   </div>
 
   <script src="{{ url_for('static', filename='pspdfkit.js') }}"></script>

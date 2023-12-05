@@ -1,17 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Buttons Example</title>
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <title>首页</title>
 </head>
+
 <body>
-    <h1>Welcome to the Initial Page!</h1>
-    <a href="{{ url_for('op_compress') }}"><button>压缩</button></a>
-    <a href="{{ url_for('op_split') }}"><button>分割</button></a>
-    <a href="{{ url_for('op_sy') }}"><button>添加水印</button></a>
-    <a href="{{ url_for('op_encrypt') }}"><button>加密</button></a>
-    <a href="{{ url_for('op_merge') }}"><button>合并</button></a>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="{{ url_for('index') }}" class="nav__logo">PDF 在线解析</a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="{{ url_for('index') }}" class="nav__link">Home</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="{{ url_for('op_compress') }}" class="nav__link">压缩</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="{{ url_for('op_split') }}" class="nav__link">分割</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="{{ url_for('op_watermark') }}" class="nav__link">添加水印</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="{{ url_for('op_merge') }}" class="nav__link">合并</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="{{ url_for('op_encrypt') }}" class="nav__link">加密</a>
+                    </li>
+                </ul>
+
+                <!-- Close button -->
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+
+            <div class="nav__actions">
+                <!-- Search button -->
+                <i class="ri-search-line nav__search" id="search-btn"></i>
+
+                <!-- Login button -->
+                <i class="ri-user-line nav__login" id="login-btn"></i>
+
+                <!-- Toggle button -->
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!--==================== SEARCH ====================-->
+    <div class="search" id="search">
+        <form action="" class="search__form">
+            <i class="ri-search-line search__icon"></i>
+            <input type="search" placeholder="What are you looking for?" class="search__input">
+        </form>
+
+        <i class="ri-close-line search__close" id="search-close"></i>
+    </div>
+
+    <!--==================== LOGIN ====================-->
+    <div class="login" id="login">
+        <form action="" class="login__form">
+            <h2 class="login__title">Log In</h2>
+
+            <div class="login__group">
+                <div>
+                    <label for="email" class="login__label">Email</label>
+                    <input type="email" placeholder="Write your email" id="email" class="login__input">
+                </div>
+
+                <div>
+                    <label for="password" class="login__label">Password</label>
+                    <input type="password" placeholder="Enter your password" id="password" class="login__input">
+                </div>
+            </div>
+
+            <div>
+                <p class="login__signup">
+                    You do not have an account? <a href="#">Sign up</a>
+                </p>
+
+                <a href="#" class="login__forgot">
+                    You forgot your password
+                </a>
+
+                <button type="submit" class="login__button">Log In</button>
+            </div>
+        </form>
+
+        <i class="ri-close-line login__close" id="login-close"></i>
+    </div>
+
+    <div class="bodyBg home-body-bg new-style">
+        <div class="bodyBg_bgcolor"></div>
+        <div class="bodyBg_image"></div>
+    </div>
+    <div class="main whiteBox clearfix home-white-box new-style">
+        <div class="whiteBox_top">
+            <h1 class="big_title">在线PDF解析</h1>
+            <div class="home_title_des">让PDF变得简单高效！所有工具都可以免费使用，只需几秒即可完成PDF的转换、合并、压缩和拆分。</div>
+        </div>
+        <div class="whiteBox_middle">
+            <div class="convert">
+                <ul>
+
+                    <li><a href="/view" gadata="Hipdf_Edit PDF Button,Homepage" class="gaTrack"><i
+                                class="fun_icons edit"></i><i class="hotnew"><svg width="32" height="16"
+                                    viewBox="0 0 32 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0 8C0 3.58172 3.58172 0 8 0H24C28.4183 0 32 3.58172 32 8V8C32 12.4183 28.4183 16 24 16H16H13H10H8C3.58172 16 0 12.4183 0 8V8Z"
+                                        fill="#FF512B"></path>
+                                    <path
+                                        d="M11.97 4.5V11.5H9.61V8.92H7.43V11.5H5.07V4.5H7.43V6.98H9.61V4.5H11.97ZM16.7771 11.66C16.0238 11.66 15.3471 11.5033 14.7471 11.19C14.1471 10.8767 13.6771 10.4433 13.3371 9.89C12.9971 9.33 12.8271 8.7 12.8271 8C12.8271 7.3 12.9971 6.67333 13.3371 6.12C13.6771 5.56 14.1471 5.12333 14.7471 4.81C15.3471 4.49667 16.0238 4.34 16.7771 4.34C17.5304 4.34 18.2071 4.49667 18.8071 4.81C19.4071 5.12333 19.8771 5.56 20.2171 6.12C20.5571 6.67333 20.7271 7.3 20.7271 8C20.7271 8.7 20.5571 9.33 20.2171 9.89C19.8771 10.4433 19.4071 10.8767 18.8071 11.19C18.2071 11.5033 17.5304 11.66 16.7771 11.66ZM16.7771 9.75C17.0704 9.75 17.3338 9.68 17.5671 9.54C17.8071 9.39333 17.9971 9.19 18.1371 8.93C18.2771 8.66333 18.3471 8.35333 18.3471 8C18.3471 7.64667 18.2771 7.34 18.1371 7.08C17.9971 6.81333 17.8071 6.61 17.5671 6.47C17.3338 6.32333 17.0704 6.25 16.7771 6.25C16.4838 6.25 16.2171 6.32333 15.9771 6.47C15.7438 6.61 15.5571 6.81333 15.4171 7.08C15.2771 7.34 15.2071 7.64667 15.2071 8C15.2071 8.35333 15.2771 8.66333 15.4171 8.93C15.5571 9.19 15.7438 9.39333 15.9771 9.54C16.2171 9.68 16.4838 9.75 16.7771 9.75ZM23.006 6.33H20.956V4.5H27.416V6.33H25.366V11.5H23.006V6.33Z"
+                                        fill="white"></path>
+                                </svg></i>
+                            <div class="func_item_right"><span title="PDF批注" class="fun_title colprimary">PDF批注</span>
+                                <p class="fun_descript">直接在Web浏览器中批注PDF</p>
+                            </div>
+                        </a></li>
+
+                    <li><a href="/compress" gadata="Hipdf_Compress PDF Button,Homepage" class="gaTrack"><i
+                                class="fun_icons compress"></i><i class="hotnew"><svg width="32" height="16"
+                                    viewBox="0 0 32 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0 8C0 3.58172 3.58172 0 8 0H24C28.4183 0 32 3.58172 32 8V8C32 12.4183 28.4183 16 24 16H16H13H10H8C3.58172 16 0 12.4183 0 8V8Z"
+                                        fill="#FF512B"></path>
+                                    <path
+                                        d="M11.97 4.5V11.5H9.61V8.92H7.43V11.5H5.07V4.5H7.43V6.98H9.61V4.5H11.97ZM16.7771 11.66C16.0238 11.66 15.3471 11.5033 14.7471 11.19C14.1471 10.8767 13.6771 10.4433 13.3371 9.89C12.9971 9.33 12.8271 8.7 12.8271 8C12.8271 7.3 12.9971 6.67333 13.3371 6.12C13.6771 5.56 14.1471 5.12333 14.7471 4.81C15.3471 4.49667 16.0238 4.34 16.7771 4.34C17.5304 4.34 18.2071 4.49667 18.8071 4.81C19.4071 5.12333 19.8771 5.56 20.2171 6.12C20.5571 6.67333 20.7271 7.3 20.7271 8C20.7271 8.7 20.5571 9.33 20.2171 9.89C19.8771 10.4433 19.4071 10.8767 18.8071 11.19C18.2071 11.5033 17.5304 11.66 16.7771 11.66ZM16.7771 9.75C17.0704 9.75 17.3338 9.68 17.5671 9.54C17.8071 9.39333 17.9971 9.19 18.1371 8.93C18.2771 8.66333 18.3471 8.35333 18.3471 8C18.3471 7.64667 18.2771 7.34 18.1371 7.08C17.9971 6.81333 17.8071 6.61 17.5671 6.47C17.3338 6.32333 17.0704 6.25 16.7771 6.25C16.4838 6.25 16.2171 6.32333 15.9771 6.47C15.7438 6.61 15.5571 6.81333 15.4171 7.08C15.2771 7.34 15.2071 7.64667 15.2071 8C15.2071 8.35333 15.2771 8.66333 15.4171 8.93C15.5571 9.19 15.7438 9.39333 15.9771 9.54C16.2171 9.68 16.4838 9.75 16.7771 9.75ZM23.006 6.33H20.956V4.5H27.416V6.33H25.366V11.5H23.006V6.33Z"
+                                        fill="white"></path>
+                                </svg></i>
+                            <div class="func_item_right"><span title="PDF压缩" class="fun_title colprimary">PDF压缩</span>
+                                <p class="fun_descript">减小PDF文件大小的最简单方法</p>
+                            </div>
+                        </a></li>
+
+                    <li><a href="/merge" gadata="Hipdf_Merge PDF Button,Homepage" class="gaTrack"><i
+                                class="fun_icons merge"></i>
+                            <div class="func_item_right"><span title="合并PDF" class="fun_title colprimary">合并PDF</span>
+                                <p class="fun_descript">合并PDF文件最简单的方法</p>
+                            </div>
+                        </a></li>
+
+                    <li><a href="/split" gadata="Hipdf_Split PDF Button,Homepage" class="gaTrack"><i
+                                class="fun_icons split"></i>
+                            <div class="func_item_right"><span title="PDF分割" class="fun_title colprimary">PDF分割</span>
+                                <p class="fun_descript">按页面范围将PDF文件拆分成多个PDF文件</p>
+                            </div>
+                        </a></li>
+
+                    <li><a href="/encrypt" gadata="Hipdf_Protect PDF Button,Homepage" class="gaTrack"><i
+                                class="fun_icons protect"></i>
+                            <div class="func_item_right"><span title="PDF" class="fun_title colprimary">PDF加密</span>
+                                <p class="fun_descript">为您的PDF添加密码，以提高安全性</p>
+                            </div>
+                        </a></li>
+
+                    <li><a href="/watermark" gadata="Option_Sign_PDF,Homepage" class="gaTrack"><i
+                                class="fun_icons sign"></i> 
+                            <div class="func_item_right"><span title="PDF添加水印" class="fun_title colprimary">PDF添加水印</span>
+                                <p class="fun_descript">在PDF文件上创建并添加水印</p>
+                            </div>
+                        </a></li>
+
+                    <li><a href="#" gadata="Hipdf_Crop PDF Button,Homepage" class="gaTrack"><i
+                                class="fun_icons sharedocument"></i> <i class="hotnew"><svg width="32" height="16"
+                                    viewBox="0 0 32 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0 8C0 3.58172 3.58172 0 8 0H24C28.4183 0 32 3.58172 32 8C32 12.4183 28.4183 16 24 16H16H13H10H8C3.58172 16 0 12.4183 0 8Z"
+                                        fill="#1BD898"></path>
+                                    <path
+                                        d="M10.415 5.05153V12H8.48929L5.84887 8.84341V12H3.5658V5.05153H5.49152L8.13194 8.20812V5.05153H10.415ZM17.3209 10.2331V12H11.5437V5.05153H17.1919V6.81843H13.8467V7.63239H16.7849V9.31988H13.8467V10.2331H17.3209ZM29.4319 5.05153L27.2084 12H24.6971L23.5754 8.28753L22.3941 12H19.8828L17.6592 5.05153H20.0714L21.2824 9.00223L22.5629 5.05153H24.7169L25.9279 9.05186L27.2084 5.05153H29.4319Z"
+                                        fill="white"></path>
+                                </svg></i>
+                            <div class="func_item_right"><span title="分享文档" class="fun_title colprimary">分享文档</span>
+                                <p class="fun_descript">免费的在线文档分享(实现中)</p>
+                            </div>
+                        </a></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

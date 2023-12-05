@@ -5,11 +5,12 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
    <!--=============== CSS ===============-->
    <link rel="stylesheet" href="static/css/styles.css">
 
-   <title>Responsive navbar with search and login - Bedimcode</title>
+   <title>加密PDF</title>
 </head>
 
 <body>
@@ -33,7 +34,7 @@
                </li>
 
                <li class="nav__item">
-                  <a href="{{ url_for('op_sy') }}" class="nav__link">添加水印</a>
+                  <a href="{{ url_for('op_watermark') }}" class="nav__link">添加水印</a>
                </li>
 
                <li class="nav__item">
@@ -112,8 +113,8 @@
    <!--==================== MAIN ====================-->
    <main class="main">
       <h1 class="title-pdfParser">加密PDF</h1>
-      <div class="red-box">
-         <div id="drop-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+      <div class="red-box" style="background-color: #ff4f6a;">
+         <div id="drop-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" style="background-color: #e84a62;">
             <div class="pdf-icon">
                <div class="svg-area">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 60">
@@ -130,89 +131,33 @@
             <label class="button" for="fileElem">拖放文件至此处</label>
          </div>
 
-         <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm" style="display:none;">
+         <form action="/upload-encrypt" method="post" enctype="multipart/form-data" id="uploadForm"
+            style="display:none;">
             <input type="file" name="file" id="fileInput" accept=".pdf" style="display:none;" onchange="submitForm()">
          </form>
-      </div>
-      <!-- <div class="detailcontainer">
-         <div class="page">
-             <div class="top">
-                 <div class="title">
-                     <div class="left">
-                         <div class="text">PDF 压缩</div>
-                         <div class="sub">
-                             <div class="flag">
-                                 <div class="ellipse ellipse1"></div>
-                                 <div class="ellipse ellipse2"></div>
-                                 <div class="ellipse ellipse3"></div>
-                                 <div class="ellipse ellipse4"></div>
-                             </div>
-                             <div class="subtext">Qiming</div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="comfort">轻松在线压缩 PDF 文件体积。无论你是自由职业者还是企业主，我们的工具都能帮助你把事情做得更好、更快、更聪明。</div>
-             </div>
+
+         <!-- 追加输入框 -->
+         <!-- <input type="text" name="password" id="passwordInput" placeholder="Enter additional data"> -->
+         <!-- <h3 class="display-4 fw-bold lh-1 text-body-emphasis mb-3" style="margin: 50px;">请输入对PDF进行加密的密码</h3> -->
+         <p class="col-lg-10 fs-4" style="margin: 50px auto;">请输入对PDF进行加密的密码</p>
+         <div class="form-floating"">
+            <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password"
+               style="background-image: url(&quot;chrome-extension://keokhigifjinncljedmendkbikiakicj/src/images/icons/icon-32-i.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position 0s ease 0s, background-size 0s ease 0s !important; cursor: pointer;">
+            <label for="floatingPassword">Password</label>
          </div>
-     </div> -->
-      <div class="pvbp07-0 eHiDnv">
-         <div class="s0ug8l-0 fJhegd">
-            <h2 class="s0ug8l-1 cDiuNi">在线 PDF 加密工具</h2>
-            <p class="s0ug8l-2 ehrBSG">这款工具，提供免费 PDF 加密。</p>
-         </div>
-         <div class="sc-1wj22sv-0 dDlShA">
-            <div class="sc-1wj22sv-1 hdWRXa">
-               <h3 class="sc-1wj22sv-2 fnGbM">灵活的 PDF 压缩</h3>
-               <p class="sc-1wj22sv-3 fKLtLk">快速、专业的结果。从压缩级别中选择以调整你的文件大小，而不影响文件的质量。</p>
-               <div class="sc-1wj22sv-4 kVyLsq"></div>
-            </div>
-            <div class="sc-1wj22sv-5 iNoxwa"><img alt="A shrinking PDF showcasing Smallpdf’s Compress PDF tool options"
-                  src="https://s.smallpdf.com/static/cms/f/102628/x/884c595ea1/220902_flexiblecompression.svg"
-                  loading="lazy" width="600" height="520" class="sc-1w0ts1v-0 kdKtXD"></div>
-         </div>
-         <div class="sc-1wj22sv-0 dDlShA">
-            <div class="sc-1wj22sv-1 hdWRXa">
-               <h3 class="sc-1wj22sv-2 fnGbM">压缩是如何进行的？</h3>
-               <p class="sc-1wj22sv-3 fKLtLk">我们处理你的文件，去除重复图案，重新编码大型图像，结果便是一个高质量但体积更小的 PDF。速度之快，让你的工作更高效。</p>
-               <div class="sc-1wj22sv-4 kVyLsq"></div>
-            </div>
-            <div class="sc-1wj22sv-5 iNoxwa"><img
-                  alt="Compress PDF works by removing repetitive patterns to shrink your PDF."
-                  src="https://s.smallpdf.com/static/cms/f/102628/x/2e05c5fd83/220902_howtocompression.svg"
-                  loading="lazy" width="600" height="520" class="sc-1w0ts1v-0 kdKtXD"></div>
-         </div>
-         <div class="sc-1wj22sv-0 dDlShA">
-            <div class="sc-1wj22sv-1 hdWRXa">
-               <!-- <h3 class="sc-1wj22sv-2 fnGbM">共享文件的后期处理</h3>
-               <p class="sc-1wj22sv-3 fKLtLk">协作对于团队工作和完成工作至关重要。一旦你压缩了 PDF
-                  的体积，与你的团队或客户分享它就变得超级简单。</p> -->
-               <div class="sc-1wj22sv-4 kVyLsq"></div>
-            </div>
-            <div class="sc-1wj22sv-5 iNoxwa"><img
-                  alt="Smallpdf share feature, easy to share files after PDF compression."
-                  src="https://s.smallpdf.com/static/cms/f/102628/x/cffa26245f/220902_easysharing.svg" loading="lazy"
-                  width="600" height="520" class="sc-1w0ts1v-0 kdKtXD"></div>
-                  <h2 class="sc-1oo6ywp-3 cGcXHD">如何在线免费压缩 PDF：</h2>
-                  <ol class="sc-1oo6ywp-4 fyBPkU">
-                     <li class="sc-1oo6ywp-5 ca-DgPV">1. 将文件上传到这个页面</li>
-                     <li class="sc-1oo6ywp-5 ca-DgPV">2. 选择你想要的压缩级别</li>
-                     <li class="sc-1oo6ywp-5 ca-DgPV">3. 点击“下载”以保存压缩好的 PDF 文件</li>
-                     <li class="sc-1oo6ywp-5 ca-DgPV">4. 如果需要，可以继续使用我们的其他工具编辑 PDF 文件</li>
-                  </ol>
-         </div>
-         <div class="sc-1oo6ywp-0 bTfRKz">
-            <div class="sc-1oo6ywp-1 kxRXGp">
-               <div class="sc-1oo6ywp-7 hmAVMl"><img alt="4-step instructions to compress PDF files"
-                     src="https://s.smallpdf.com/static/cms/f/102628/x/3153718e1e/220902_howtopdfie.svg" loading="lazy"
-                     width="400" height="320" class="nikv54-0 kruYee"></div>
-            </div>
+         <div style="margin: 40px auto; text-align: center;">
+            <img src="static/imgs/encrypt-detail.png" alt="encrypt-detail" style="width: 80vh; margin: 40px auto;">
          </div>
       </div>
-
-
-
-
    </main>
+   <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+      </ul>
+      <p class="text-center text-body-secondary">© 2023 Qiming</p>
+    </footer>
    <!--=============== MAIN JS ===============-->
    <script src="static/js/main.js"></script>
    <script>
@@ -233,12 +178,26 @@
          const fileInput = document.getElementById('fileElem');
          const uploadForm = document.getElementById('uploadForm');
          const fileInputForm = document.getElementById('fileInput');
+         const passwordInput = document.getElementById('passwordInput'); // 新添加的输入框
 
          fileInput.files = files;
          fileInputForm.files = files;
 
+         // 将输入框的值赋给一个隐藏的input元素，以便一同提交
+         const passwordHiddenInput = document.createElement('input');
+         passwordHiddenInput.type = 'hidden';
+         passwordHiddenInput.name = 'password';
+         passwordHiddenInput.value = passwordInput.value;
+         if (passwordInput.value == '') {
+            alert('请输入密码');
+            return;
+         }
+         // 将隐藏的input元素添加到表单中
+         uploadForm.appendChild(passwordHiddenInput);
+
          uploadForm.submit();
       }
+
 
       function submitForm() {
          document.getElementById('uploadForm').submit();
