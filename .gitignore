@@ -1,3 +1,5 @@
 *.pdf
 *.zip
 __pycache__
+.DS_Store
+.venv

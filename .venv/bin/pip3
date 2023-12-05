@@ -1,4 +1,4 @@
-#!/home/qm/Documents/flask-pdf-editer/.venv/bin/python3
+#!/Users/qm/Code/PdfParser/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
