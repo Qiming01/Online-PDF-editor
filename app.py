@@ -30,7 +30,7 @@ def upload_file():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # return jsonify({'message': 'File successfully uploaded'})
         pdf_path = 'static/upload/' + filename
-        return render_template('modern-viewer.html', pdf_path=pdf_path)
+        return render_template('compress.html', pdf_path=pdf_path)
     else:
         return jsonify({'error': 'Invalid file format'})
 
