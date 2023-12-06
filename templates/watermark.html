@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>添加水印</title>
+  <!--=============== CSS ===============-->
+  <link rel="stylesheet" href="static/css/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <style>
+    .side-bar {
+      top: 4vh;
+      width: 24.5%;
+      height: 96vh;
+      background-color: #fcfdfe;
+      float: right;
+      position: relative;
+      padding: 40px;
+    }
+
+    .viewBox {
+      position: absolute;
+      top: 4vh;
+    }
+
+    .side-bar-inner {
+      background-color: #f0f5ff;
+      height: 100%;
+      margin: 0px 3px 0px 40px;
+      /* margin: 40px; */
+      padding: 40px;
+      /* border: 2px dashed #797777; */
+      border: none;
+      border-radius: 20px;
+      border-style: groove;
+    }
+
+    .download-area {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .choose-level {
+      text-align: center;
+      margin: 40px auto;
+    }
+
+    .level-lable {
+      font-size: 22px;
+      line-height: 40px;
+      font-weight: 800;
+      color: hsl(230, 12%, 40%);
+      font-family: "Syne", sans-serif;
+    }
+
+    /* 按钮样式 */
+    .button {
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      text-decoration: none;
+      font-family: sans-serif;
+      font-weight: 600;
+      /* font-size: 2em; */
+      font-size: 28px;
+      /* padding: 0.45em 1em 0.45em 1em; */
+      padding: 20px 40px 20px 40px;
+      color: blue;
+      border: 0.15em solid blue;
+      border-radius: 2em;
+      transition: 4s;
+      height: 78px;
+    }
+
+    .button:before,
+    .button:after {
+      content: "";
+      position: absolute;
+      top: -1.5em;
+      z-index: -1;
+      width: 200%;
+      aspect-ratio: 1;
+      border: none;
+      border-radius: 40%;
+      background-color: rgba(0, 0, 255, 0.25);
+      transition: 4s;
+    }
+
+    .button:before {
+      left: -80%;
+      transform: translate3d(0, 5em, 0) rotate(-340deg);
+    }
+
+    .button:after {
+      right: -80%;
+      transform: translate3d(0, 5em, 0) rotate(390deg);
+    }
+
+    .button:hover,
+    .button:focus {
+      color: white;
+    }
+
+    .button:hover:before,
+    .button:hover:after,
+    .button:focus:before,
+    .button:focus:after {
+      transform: none;
+      background-color: rgba(0, 0, 255, 0.75);
+    }
+
+    .nav {
+      height: 4vh;
+    }
+  </style>
+</head>
+
+<body>
+  <!--==================== HEADER ====================-->
+  <header class="header" id="header" style="max-height: 4vh;">
+    <nav class="nav container">
+      <a href="{{ url_for('index') }}" class="nav__logo" style="text-decoration:none;">PDF 在线解析</a>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="{{ url_for('op_view') }}" class="nav__link" style="text-decoration:none;">批注</a>
+          </li>
+
+          <li class="nav__item">
+            <a href="{{ url_for('op_compress') }}" class="nav__link" style="text-decoration:none;">压缩</a>
+          </li>
+
+          <li class="nav__item">
+            <a href="{{ url_for('op_split') }}" class="nav__link" style="text-decoration:none;">分割</a>
+          </li>
+
+          <li class="nav__item">
+            <a href="{{ url_for('op_watermark') }}" class="nav__link" style="text-decoration:none;">添加水印</a>
+          </li>
+
+          <li class="nav__item">
+            <a href="{{ url_for('op_merge') }}" class="nav__link" style="text-decoration:none;">合并</a>
+          </li>
+
+          <li class="nav__item">
+            <a href="{{ url_for('op_encrypt') }}" class="nav__link" style="text-decoration:none;">加密</a>
+          </li>
+        </ul>
+
+        <!-- Close button -->
+        <div class="nav__close" id="nav-close">
+          <i class="ri-close-line"></i>
+        </div>
+      </div>
+
+      <div class="nav__actions">
+        <!-- Search button -->
+        <i class="ri-search-line nav__search" id="search-btn"></i>
+
+        <!-- Login button -->
+        <i class="ri-user-line nav__login" id="login-btn"></i>
+
+        <!-- Toggle button -->
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div>
+    <div class="viewBox" id="pspdfkit" style="width: 75%; height: 96vh;"></div>
+    <div class="side-bar">
+      <div class="side-bar-inner">
+        <img alt="" src="https://s.smallpdf.com/static/cms/f/102628/300x180/3865649eef/8bfe6e572c81ad5bdc63.svg" loading="lazy" width="300" height="180" class="sc-11y27q7-0 kbMMMV">
+        <h2 class="sc-1oo6ywp-3 cGcXHD">如何在线为PDF添加水印：</h2>
+        <ol class="sc-1oo6ywp-4 fyBPkU">
+          <li class="sc-1oo6ywp-5 ca-DgPV">1. 输入您要设置的水印及其格式</li>
+          <li class="sc-1oo6ywp-5 ca-DgPV">2. 上传PDF文件</li>
+          <li class="sc-1oo6ywp-5 ca-DgPV">3. 点击“下载”以保存压缩好的 PDF 文件</li>
+          <li class="sc-1oo6ywp-5 ca-DgPV">4. 如果需要，可以继续使用我们的其他工具编辑 PDF 文件</li>
+        </ol>
+        <div class="download-area">
+          <a href="static/download/{{ obj }}" download="{{ obj }}" class="button">下载</a>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='pspdfkit.js') }}"></script>
+
+  <script>
+    var url = '{{pdf_path}}';
+    PSPDFKit.load({
+      container: "#pspdfkit",
+      document: url,
+    })
+      .then(function (instance) {
+        console.log("PSPDFKit loaded", instance);
+      })
+      .catch(function (error) {
+        console.error(error.message);
+      });
+  </script>
+</body>
+
+</html>

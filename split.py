@@ -25,7 +25,7 @@ def empty_folder(folder_path):
         shutil.rmtree(folder_path)
         # 重新创建空文件夹
         os.makedirs(folder_path)
-        print(f"Folder '{folder_path}' successfully emptied.")
+        # print(f"Folder '{folder_path}' successfully emptied.")
     except Exception as e:
         print(f"Error: {e}")
 
@@ -35,7 +35,7 @@ def generate_zip_file():
     zip_file_path = 'static/download/archive.zip'
 
     with zipfile.ZipFile(zip_file_path, 'w') as zipf:
-        for root, dirs, files in os.walk(folder_path):
+        for root, files in os.walk(folder_path):
             for file in files:
                 file_path = os.path.join(root, file)
                 arcname = os.path.relpath(file_path, folder_path)
